@@ -23,12 +23,10 @@ public class PlayerInput : MonoBehaviour
     public void OnMove(InputValue value)
     {
         _inputDirection = value.Get<Vector2>();
-        Debug.Log(_inputDirection);
     }
     public void OnSprint(InputValue value)
     {
         _isSprint = value.isPressed;
-        Debug.Log(_isSprint);
     }
     private void UpdateInputData()
     {

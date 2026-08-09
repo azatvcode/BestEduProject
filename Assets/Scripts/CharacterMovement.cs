@@ -7,6 +7,8 @@ public class CharacterMovement : MonoBehaviour
     private float _rotationSmoothTime = 0.1f;
     private float _targetRotation;
     private float _rotationVelocity;
+    private bool _isGrounded;
+    private float _gravityVelocity = 9.81f;
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
@@ -23,11 +25,15 @@ public class CharacterMovement : MonoBehaviour
         
     }
     void FixedUpdate()
-    {
-        if (_currentMovementData.direction == Vector3.zero) return;
-        HandleRotation();
-        _characterController.Move(_currentMovementData.direction * _currentMovementData.speed * Time.fixedDeltaTime);
-
+    {   
+        Vector3 hozintalMotion = new Vector3(_currentMovementData.direction.x, 0f, _currentMovementData.direction.z)
+        * _currentMovementData.speed * Time.fixedDeltaTime;
+        Vector3 verticalMotion = new Vector3(0f, -_gravityVelocity, 0f) * Time.fixedDeltaTime;
+        if(hozintalMotion != Vector3.zero)
+        {
+            HandleRotation();
+        }
+        _characterController.Move(hozintalMotion + verticalMotion);
     }
     public void SetMovementFromData(MovementData movementData)
     {
@@ -51,5 +57,17 @@ public class CharacterMovement : MonoBehaviour
         );
 
         transform.rotation = Quaternion.Euler(0f, rotation, 0f);
+    }
+    private void ApplyGravity()
+    {
+        _isGrounded = _characterController.isGrounded;
+        if(_isGrounded)
+        {
+            
+        }
+        else
+        {
+            
+        }
     }
 }
