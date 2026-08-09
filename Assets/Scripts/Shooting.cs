@@ -39,8 +39,6 @@ public class Shooting : MonoBehaviour
         // Куда долетит трассер
         Vector3 endPoint;
 
-        // Пускаем луч из центра камеры вперёд (Physics.Raycast возвращает true,
-        // если луч во что-то врезался в пределах range)
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range, hitMask))
         {
             Debug.Log("Попал в: " + hit.collider.gameObject.name);
@@ -67,10 +65,10 @@ public class Shooting : MonoBehaviour
         tracer.Show(start, end);
     }
 
-    void OnDrawGizmosSelected()
-    {
-        if (cam == null) return;
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(cam.transform.position, cam.transform.position + cam.transform.forward * range);
-    }
+    // void OnDrawGizmosSelected()
+    // {
+    //     if (cam == null) return;
+    //     Gizmos.color = Color.red;
+    //     Gizmos.DrawLine(cam.transform.position, cam.transform.position + cam.transform.forward * range);
+    // }
 }
