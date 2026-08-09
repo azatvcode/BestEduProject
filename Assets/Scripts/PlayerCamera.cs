@@ -25,7 +25,7 @@ public class PlayerCamera : MonoBehaviour
         _input.Enable();
         _3rdPersonFollowComp = GetComponent<CinemachineThirdPersonFollow>();
     }
-    void LateUpdate()
+    void FixedUpdate()
     {   
         CameraRotate();
         CameraZoom();

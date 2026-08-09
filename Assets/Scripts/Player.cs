@@ -36,21 +36,6 @@ public class Player : Character
     }
     void FixedUpdate()
     {
-        /*_moveInput = _input.Player.Move.ReadValue<Vector2>();
-        //Debug.Log(_moveInput);
-        Vector3 direction = new Vector3(_moveInput.x, 0, _moveInput.y).normalized;
-        
-        if (direction != Vector3.zero)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _rotationSpeed * Time.fixedDeltaTime);
 
-            transform.Translate(Vector3.forward * 1 * Time.fixedDeltaTime, Space.Self);
-            
-        }*/
-    }
-    public void OnMove(InputValue value)
-    {
-        Debug.Log("Хожу");
     }
 }
