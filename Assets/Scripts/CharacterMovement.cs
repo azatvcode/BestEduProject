@@ -13,17 +13,7 @@ public class CharacterMovement : MonoBehaviour
     {
         _characterController = GetComponent<CharacterController>();
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     void FixedUpdate()
     {   
         Vector3 hozintalMotion = new Vector3(_currentMovementData.direction.x, 0f, _currentMovementData.direction.z)
@@ -47,7 +37,11 @@ public class CharacterMovement : MonoBehaviour
     }
     private void HandleRotation()
     {
-        _targetRotation = Mathf.Atan2(_currentMovementData.direction.x, _currentMovementData.direction.z) * Mathf.Rad2Deg;  
+        _targetRotation =
+            Mathf.Atan2(
+                _currentMovementData.direction.x,
+                _currentMovementData.direction.z
+            ) * Mathf.Rad2Deg;  
 
         float rotation = Mathf.SmoothDampAngle(
             transform.eulerAngles.y,
