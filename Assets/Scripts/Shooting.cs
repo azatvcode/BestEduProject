@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class Shooting : MonoBehaviour
 {
     [Tooltip("Камера, от которой будет вылетать луч выстрела")]
-    public Camera cam;
+    public PlayerCamera cam;
 
     [Tooltip("Максимальная дальность стрельбы в метрах")]
     public float range = 100f;
