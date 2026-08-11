@@ -4,6 +4,7 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
     private MovementData _currentMovementData;
+    private Animator _animator;
     [SerializeField]private CharacterController _characterController;
     [SerializeField]private float _rotationSmoothTime = 0.1f;
     private float _targetRotation;
@@ -15,6 +16,7 @@ public class CharacterMovement : MonoBehaviour
     private void Awake()
     {
         //_characterController = GetComponent<CharacterController>();
+        _animator = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -26,6 +28,14 @@ public class CharacterMovement : MonoBehaviour
         //Debug.Log(_gravityVelocity);
         Debug.Log(_isGrounded);
         //_characterController.Move(Vector3.forward * Time.fixedDeltaTime);
+        if(_currentMovementData.direction == Vector3.zero)
+        {
+            _animator.SetFloat("Speed", 0);
+        }
+        else
+        {
+            _animator.SetFloat("Speed",_currentMovementData.speed);
+        }  
     }
     public void SetMovementFromData(MovementData movementData)
     {

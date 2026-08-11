@@ -8,6 +8,7 @@ public class Enemy : Character
 
     private NavMeshAgent _navMeshAgent;
     private Transform _target;
+    private Animator _animator;
 
     protected override void Awake()
     {
@@ -15,6 +16,7 @@ public class Enemy : Character
 
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _navMeshAgent.speed = movementSpeed;
+        _animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -53,6 +55,7 @@ public class Enemy : Character
     private void ChasePlayer()
     {
         _navMeshAgent.isStopped = false;
+        _animator.SetBool("NearTarget", false);
         _navMeshAgent.SetDestination(_target.position);
         Debug.Log(
     $"Velocity: {_navMeshAgent.velocity} | " +
@@ -63,6 +66,7 @@ public class Enemy : Character
     private void StopAndPrepareAttack()
     {
         _navMeshAgent.isStopped = true;
+        _animator.SetBool("NearTarget", true);
         _navMeshAgent.ResetPath();
 
         Vector3 direction = _target.position - transform.position;

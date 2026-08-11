@@ -1104,6 +1104,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 36078ab0369161e49a29d349ae3e0739, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9c65d483cb615fb408373ce1ff3f4c38, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1158,18 +1162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e343a141abe065244bd1f90b291849d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterAttacker
---- !u!114 &1321925937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321925933}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6983494a9e0cd3141ac0847b9e3d1bee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CharacterMovement
+  _damage: 10
+  _cooldown: 1
 --- !u!114 &1321925938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2001,7 +1995,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2668605608433959078, guid: 2faa610713d3b3c439473daa55e8c60a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2910311387390387455, guid: 2faa610713d3b3c439473daa55e8c60a, type: 3}
       propertyPath: m_Layer
@@ -2044,9 +2038,17 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 2faa610713d3b3c439473daa55e8c60a, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 2faa610713d3b3c439473daa55e8c60a, type: 3}
+    - target: {fileID: 5866666021909216657, guid: 2faa610713d3b3c439473daa55e8c60a, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 2faa610713d3b3c439473daa55e8c60a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9fcbe4a6e5701bb498f722bb996eb66e, type: 2}
     - target: {fileID: 6574529281785038257, guid: 2faa610713d3b3c439473daa55e8c60a, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -2149,6 +2151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e343a141abe065244bd1f90b291849d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterAttacker
+  _damage: 10
+  _cooldown: 1
 --- !u!114 &2107334644
 MonoBehaviour:
   m_ObjectHideFlags: 0
