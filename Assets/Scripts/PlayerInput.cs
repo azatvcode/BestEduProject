@@ -4,17 +4,20 @@ using UnityEngine.InputSystem;
 public class PlayerInput : MonoBehaviour
 {
     private CharacterMovement _characterMovement;
-    [SerializeField] private GameObject _playerCamera;
+    [SerializeField] private PlayerCamera _playerCamera;
     private Vector2 _inputMove;
     //private PlayerInputAction _input;
     private bool _isSprint;
     private float _sprintSpeed = 5;
     private float _walkSpeed = 2;
     private Vector2 _inputDirection;
+    private Vector2 _look;
+    private Vector2 _scroll;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         _characterMovement = GetComponent<CharacterMovement>();
+        _playerCamera = FindAnyObjectByType<PlayerCamera>();
     }
     void FixedUpdate()
     {
@@ -28,12 +31,20 @@ public class PlayerInput : MonoBehaviour
     {
         _isSprint = value.isPressed;
     }
+    public void OnLook(InputValue value)
+    {
+        _playerCamera.SetMouseDelta(value.Get<Vector2>());
+    }
+    public void OnScroll(InputValue value)
+    {
+        _playerCamera.SetScrollDelta(value.Get<Vector2>());
+    }
     private void UpdateInputData()
     {
-        Vector3 forward = _playerCamera.transform.forward;
-        Vector3 right = _playerCamera.transform.right;
-        forward.y = 0f;
+        Vector3 forward = _playerCamera.GetForwardVector();
+        Vector3 right = _playerCamera.GetRightVector();
         right.y = 0f;
+        forward.y = 0f;
         forward.Normalize();
         right.Normalize();
 

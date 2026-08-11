@@ -18,7 +18,7 @@ public class Player : Character
         base.Awake();
         //_playerCamera = GetComponent<PlayerCamera>();
         //_playerData = GetComponent<PlayerData>();
-        _playerInput = GetComponent<PlayerInput>();
+        //_playerInput = GetComponent<PlayerInput>();
 
         //_input = new PlayerInputAction();
         //_input.Enable();
