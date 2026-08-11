@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -6,8 +7,13 @@ public class Enemy : Character
     [SerializeField] private float movementSpeed = 3f;
     [SerializeField] private float attackDistance = 1.5f;
 
+    [Header("Off-Mesh Link (прыжок вниз)")]
+    [Tooltip("Сколько секунд будет длиться визуальный прыжок/падение")]
+    [SerializeField] private float linkTraverseDuration = 0.6f;
+
     private NavMeshAgent _navMeshAgent;
     private Transform _target;
+    private bool _traversingLink;
 
     protected override void Awake()
     {
@@ -15,6 +21,7 @@ public class Enemy : Character
 
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _navMeshAgent.speed = movementSpeed;
+        _navMeshAgent.autoTraverseOffMeshLink = false;
     }
 
     private void Start()
@@ -29,6 +36,15 @@ public class Enemy : Character
 
     private void Update()
     {
+          if (_navMeshAgent.isOnOffMeshLink)
+        {
+            if (!_traversingLink)
+            {
+                StartCoroutine(TraverseOffMeshLink());
+            }
+            return;
+        }
+
         if (_target == null)
         {
             _navMeshAgent.ResetPath();
@@ -54,10 +70,7 @@ public class Enemy : Character
     {
         _navMeshAgent.isStopped = false;
         _navMeshAgent.SetDestination(_target.position);
-        Debug.Log(
-    $"Velocity: {_navMeshAgent.velocity} | " +
-    $"Position: {transform.position}"
-);
+
     }
 
     private void StopAndPrepareAttack()
@@ -72,5 +85,28 @@ public class Enemy : Character
         {
             transform.rotation = Quaternion.LookRotation(direction);
         }
+    }
+    private IEnumerator TraverseOffMeshLink()
+    {
+        _traversingLink = true;
+ 
+        OffMeshLinkData linkData = _navMeshAgent.currentOffMeshLinkData;
+        Vector3 startPos = transform.position;
+        Vector3 endPos = linkData.endPos + Vector3.up * _navMeshAgent.baseOffset;
+ 
+        float elapsed = 0f;
+ 
+        while (elapsed < linkTraverseDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / linkTraverseDuration;
+            transform.position = Vector3.Lerp(startPos, endPos, t);
+            yield return null;
+        }
+ 
+        transform.position = endPos;
+ 
+        _navMeshAgent.CompleteOffMeshLink();
+        _traversingLink = false;
     }
 }

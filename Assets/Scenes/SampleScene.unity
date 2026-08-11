@@ -1158,18 +1158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e343a141abe065244bd1f90b291849d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterAttacker
---- !u!114 &1321925937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321925933}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6983494a9e0cd3141ac0847b9e3d1bee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CharacterMovement
+  _damage: 10
+  _cooldown: 1
 --- !u!114 &1321925938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1184,6 +1174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   movementSpeed: 3
   attackDistance: 1.5
+  linkTraverseDuration: 0.6
 --- !u!195 &1321925939
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1742,7 +1733,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   m_UseGeometry: 0
   m_DefaultArea: 0
-  m_GenerateLinks: 0
+  m_GenerateLinks: 1
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
   m_OverrideTileSize: 0
@@ -2149,6 +2140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e343a141abe065244bd1f90b291849d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterAttacker
+  _damage: 10
+  _cooldown: 1
 --- !u!114 &2107334644
 MonoBehaviour:
   m_ObjectHideFlags: 0
