@@ -1178,6 +1178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   movementSpeed: 3
   attackDistance: 1.5
+  linkTraverseDuration: 0.6
 --- !u!195 &1321925939
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1736,7 +1737,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   m_UseGeometry: 0
   m_DefaultArea: 0
-  m_GenerateLinks: 0
+  m_GenerateLinks: 1
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
   m_OverrideTileSize: 0
