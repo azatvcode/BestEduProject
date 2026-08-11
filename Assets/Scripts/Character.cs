@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public abstract class Character : MonoBehaviour
 {
     protected CharacterAnimator _charAnimator;
     protected CharacterMovement _charMovement;
