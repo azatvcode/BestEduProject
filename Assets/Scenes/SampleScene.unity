@@ -1158,6 +1158,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e343a141abe065244bd1f90b291849d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterAttacker
+--- !u!114 &1321925937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321925933}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6983494a9e0cd3141ac0847b9e3d1bee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterMovement
 --- !u!114 &1321925938
 MonoBehaviour:
   m_ObjectHideFlags: 0

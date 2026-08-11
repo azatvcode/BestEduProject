@@ -65,10 +65,4 @@ public class Shooting : MonoBehaviour
         tracer.Show(start, end);
     }
 
-    // void OnDrawGizmosSelected()
-    // {
-    //     if (cam == null) return;
-    //     Gizmos.color = Color.red;
-    //     Gizmos.DrawLine(cam.transform.position, cam.transform.position + cam.transform.forward * range);
-    // }
 }
