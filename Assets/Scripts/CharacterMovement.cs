@@ -26,7 +26,7 @@ public class CharacterMovement : MonoBehaviour
         HandleRotation();
         HandleMovement();
         //Debug.Log(_gravityVelocity);
-        Debug.Log(_isGrounded);
+        //Debug.Log(_isGrounded);
         //_characterController.Move(Vector3.forward * Time.fixedDeltaTime);
         if(_currentMovementData.direction == Vector3.zero)
         {
