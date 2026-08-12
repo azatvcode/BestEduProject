@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 public class Enemy : Character
 {
-    [SerializeField] private float movementSpeed = 3f;
+    [SerializeField] private float movementSpeed = 2f;
     [SerializeField] private float attackDistance = 1.5f;
 
     [Header("Off-Mesh Link (прыжок вниз)")]
