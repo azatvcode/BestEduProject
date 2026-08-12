@@ -27,6 +27,7 @@ public class CharacterMovement : MonoBehaviour
         HandleGravity();
         HandleRotation();
         HandleMovement();
+        _animator.SetFloat("Speed", _speed);
     }
     public void SetMovementFromData(MovementData movementData)
     {
@@ -76,7 +77,6 @@ public class CharacterMovement : MonoBehaviour
     }
     private void HandleMovement()
     {   
-        _animator.SetFloat("Speed", _speed);
         Vector3 horizontalMotion = new Vector3(_currentMovementData.direction.x, 0f, _currentMovementData.direction.z)
         * _speed * Time.fixedDeltaTime;
 
