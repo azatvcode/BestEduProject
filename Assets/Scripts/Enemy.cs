@@ -66,21 +66,21 @@ public class Enemy : Character
         {
             StopAndPrepareAttack();
         }
+        _animator.SetFloat("Speed",_navMeshAgent.speed);
     }
 
     private void ChasePlayer()
     {
         _navMeshAgent.isStopped = false;
-        _animator.SetBool("NearTarget", false);
         _navMeshAgent.SetDestination(_target.position);
-
+        SpeedLerp(3f);
     }
 
     private void StopAndPrepareAttack()
     {
         _navMeshAgent.isStopped = true;
-        _animator.SetBool("NearTarget", true);
         _navMeshAgent.ResetPath();
+        SpeedLerp(0f);
 
         Vector3 direction = _target.position - transform.position;
         direction.y = 0f;
@@ -112,5 +112,22 @@ public class Enemy : Character
  
         _navMeshAgent.CompleteOffMeshLink();
         _traversingLink = false;
+    }
+    private void SpeedLerp(float targetSpeed)
+    {
+        float speedOffset = 0.1f;
+
+        if (_navMeshAgent.speed < targetSpeed - speedOffset ||
+                _navMeshAgent.speed > targetSpeed + speedOffset)
+            {
+               _navMeshAgent.speed = Mathf.Lerp(_navMeshAgent.speed, targetSpeed,
+                    Time.deltaTime * 10f);
+
+                _navMeshAgent.speed = Mathf.Round(_navMeshAgent.speed * 1000f) / 1000f;
+            }
+            else
+            {
+                _navMeshAgent.speed = targetSpeed;
+            }
     }
 }
