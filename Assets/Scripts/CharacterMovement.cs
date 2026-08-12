@@ -12,6 +12,7 @@ public class CharacterMovement : MonoBehaviour
     private bool _isGrounded;
     private float _gravity = -9.81f;
     private float _gravityVelocity = -2f;
+    private float _speed;
     public LayerMask groundLayer;
     private void Awake()
     {
@@ -21,21 +22,11 @@ public class CharacterMovement : MonoBehaviour
 
     void FixedUpdate()
     {   
+        SpeedLerp(_currentMovementData.speed);
         CheckGrounded();
         HandleGravity();
         HandleRotation();
         HandleMovement();
-        //Debug.Log(_gravityVelocity);
-        Debug.Log(_isGrounded);
-        //_characterController.Move(Vector3.forward * Time.fixedDeltaTime);
-        if(_currentMovementData.direction == Vector3.zero)
-        {
-            _animator.SetFloat("Speed", 0);
-        }
-        else
-        {
-            _animator.SetFloat("Speed",_currentMovementData.speed);
-        }  
     }
     public void SetMovementFromData(MovementData movementData)
     {
@@ -84,16 +75,32 @@ public class CharacterMovement : MonoBehaviour
         }
     }
     private void HandleMovement()
-    {
+    {   
+        _animator.SetFloat("Speed", _speed);
         Vector3 horizontalMotion = new Vector3(_currentMovementData.direction.x, 0f, _currentMovementData.direction.z)
-        * _currentMovementData.speed * Time.fixedDeltaTime;
+        * _speed * Time.fixedDeltaTime;
 
         Vector3 verticalMotion = new Vector3(0f, _gravityVelocity, 0f) * Time.fixedDeltaTime;
-        Debug.Log(horizontalMotion);
-        //Debug.Log(horizontalMotion);
-        //Debug.Log(horizontalMotion + verticalMotion);
         _characterController.Move(horizontalMotion + verticalMotion);
     }
+    private void SpeedLerp(float targetSpeed)
+    {
+        float speedOffset = 0.1f;
+
+        if (_speed < targetSpeed - speedOffset ||
+                _speed > targetSpeed + speedOffset)
+            {
+               _speed = Mathf.Lerp(_speed, targetSpeed,
+                    Time.fixedDeltaTime * 10f);
+
+                _speed = Mathf.Round(_speed * 1000f) / 1000f;
+            }
+            else
+            {
+                _speed = targetSpeed;
+            }
+    }
+
     private void OnDrawGizmosSelected()
         {
             Color transparentGreen = new Color(0.0f, 1.0f, 0.0f, 0.35f);

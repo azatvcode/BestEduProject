@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInput : MonoBehaviour
+public class PlayerInputHandler : MonoBehaviour
 {
     private CharacterMovement _characterMovement;
     [SerializeField] private PlayerCamera _playerCamera;
     private Vector2 _inputMove;
-    //private PlayerInputAction _input;
+    //private PlayerInputHandlerAction _input;
     private bool _isSprint;
     private float _sprintSpeed = 5;
     private float _walkSpeed = 2;
@@ -52,11 +52,16 @@ public class PlayerInput : MonoBehaviour
         direction.Normalize();
 
         
-        MovementData input = new MovementData
+        MovementData input = new MovementData();
+        input.direction = direction;
+        if(direction == Vector3.zero)
         {
-            direction = direction,
-            speed = _isSprint ? _sprintSpeed : _walkSpeed
-        };
+            input.speed = 0f;
+        }
+        else
+        {
+            input.speed = _isSprint ? _sprintSpeed : _walkSpeed;
+        }
         _characterMovement.SetMovementFromData(input);
     }
 }
