@@ -17,7 +17,6 @@ public class Rifle : Weapon
     protected override void Update()
     {
         base.Update();
-        Debug.Log(_isFiring);
 
         if (_isFiring)
             Shoot();

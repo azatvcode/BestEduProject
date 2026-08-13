@@ -14,6 +14,8 @@ public abstract class Weapon : MonoBehaviour
     protected bool _isReloading;
     protected float _fireCooldown;
 
+    public event System.Action<int, int> OnAmmoChanged;
+
     protected virtual void Awake()
     {
         if (_data == null)
@@ -24,6 +26,7 @@ public abstract class Weapon : MonoBehaviour
 
         _currentMagazine = _data.MagazineSize;
         _currentAmmo = _data.MaxAmmo;
+        OnAmmoChanged?.Invoke(_currentMagazine, _currentAmmo);
     }
 
     protected virtual void Update()
@@ -64,6 +67,7 @@ public abstract class Weapon : MonoBehaviour
         _currentMagazine += ammoToReload;
         _currentAmmo -= ammoToReload;
 
+        OnAmmoChanged?.Invoke(_currentMagazine, _currentAmmo);
         _isReloading = false;
     }
 
@@ -90,6 +94,7 @@ public abstract class Weapon : MonoBehaviour
             return;
 
         _currentMagazine--;
+        OnAmmoChanged?.Invoke(_currentMagazine, _currentAmmo);
         _fireCooldown = 1f / _data.FireRate;
 
         RaycastHit hit;
@@ -179,6 +184,7 @@ public abstract class Weapon : MonoBehaviour
         foreach (Collider collider in colliders)
             collider.enabled = true;
     }
+
 
     public WeaponData Data => _data;
 

@@ -12,6 +12,8 @@ public class WeaponInventory : MonoBehaviour
 
     public int CurrentSlot => _currentSlot;
 
+    public event System.Action<Weapon> OnCurrentWeaponChanged;
+
     public Weapon CurrentWeapon
     {
         get
@@ -126,6 +128,8 @@ public class WeaponInventory : MonoBehaviour
             else
                 _slots[i].OnUnequip();
         }
+
+        OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
     }
 
     public void DropCurrentWeapon()
@@ -137,6 +141,7 @@ public class WeaponInventory : MonoBehaviour
 
         _slots[_currentSlot] = null;
         _currentSlot = -1;
+        OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
 
         weapon.transform.SetParent(null);
     }
