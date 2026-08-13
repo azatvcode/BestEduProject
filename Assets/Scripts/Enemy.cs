@@ -24,6 +24,15 @@ public class Enemy : Character
         _navMeshAgent.speed = movementSpeed;
         _animator = GetComponent<Animator>();
         _navMeshAgent.autoTraverseOffMeshLink = false;
+
+        if (_charHealth != null)
+            _charHealth.OnDeath += HandleDeath;
+    }
+
+    private void OnDestroy()
+    {
+        if (_charHealth != null)
+            _charHealth.OnDeath -= HandleDeath;
     }
 
     private void Start()
@@ -129,5 +138,14 @@ public class Enemy : Character
             {
                 _navMeshAgent.speed = targetSpeed;
             }
+    }
+
+    private void HandleDeath()
+    {
+        _navMeshAgent.isStopped = true;
+        _navMeshAgent.enabled = false;
+        enabled = false;
+        //анимация смерти кавуна
+        Destroy(gameObject, 0.5f);
     }
 }

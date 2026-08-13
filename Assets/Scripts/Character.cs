@@ -7,7 +7,8 @@ public abstract class Character : MonoBehaviour
     protected CharacterAttacker _charAttacker;
     protected Rigidbody _charRigidbody;
     protected Collider _charCollision;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    protected Health _charHealth;
+
     protected virtual void Awake()
     {
         _charAnimator = GetComponent<CharacterAnimator>();
@@ -15,5 +16,6 @@ public abstract class Character : MonoBehaviour
         _charAttacker = GetComponent<CharacterAttacker>();
         _charCollision = GetComponent<Collider>();
         _charRigidbody = GetComponent<Rigidbody>();
+        _charHealth = GetComponent<Health>();
     }
 }
