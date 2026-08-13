@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -6,6 +7,9 @@ public class Enemy : Character
 {
     [SerializeField] private float movementSpeed = 2f;
     [SerializeField] private float attackDistance = 1.5f;
+    //[SerializeField] private float damage = 10f;
+    //[SerializeField] private float attackCooldown = 2f;
+
 
     [Header("Off-Mesh Link (прыжок вниз)")]
     [Tooltip("Сколько секунд будет длиться визуальный прыжок/падение")]
@@ -14,6 +18,7 @@ public class Enemy : Character
     private NavMeshAgent _navMeshAgent;
     private Transform _target;
     private Animator _animator;
+    private GameObject player;
     private bool _traversingLink;
 
     protected override void Awake()
@@ -37,7 +42,7 @@ public class Enemy : Character
 
     private void Start()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
 
         if (player != null)
         {
@@ -76,6 +81,9 @@ public class Enemy : Character
             StopAndPrepareAttack();
         }
         _animator.SetFloat("Speed",_navMeshAgent.speed);
+
+       // if (attackCooldown > 0f)
+         //   attackCooldown -= Time.deltaTime;
     }
 
     private void ChasePlayer()
@@ -98,7 +106,9 @@ public class Enemy : Character
         {
             transform.rotation = Quaternion.LookRotation(direction);
         }
+        _charAttacker.Attack(player);
     }
+
     private IEnumerator TraverseOffMeshLink()
     {
         _traversingLink = true;

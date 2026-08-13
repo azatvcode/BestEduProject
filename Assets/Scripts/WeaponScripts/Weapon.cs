@@ -108,8 +108,6 @@ public abstract class Weapon : MonoBehaviour
             _data.Range,
             _hitMask))
         {
-            Debug.Log("Попал в: " + hit.collider.gameObject.name);
-
             IDamageable damageable =
                 hit.collider.GetComponent<IDamageable>();
 

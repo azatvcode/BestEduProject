@@ -22,6 +22,8 @@ public class Player : Character
 
         //_input = new PlayerInputAction();
         //_input.Enable();
+        if (_charHealth != null)
+            _charHealth.OnDeath += HandleDeath;
     }
     void Start()
     {
@@ -37,5 +39,12 @@ public class Player : Character
     void FixedUpdate()
     {
 
+    }
+
+    private void HandleDeath()
+    {
+        enabled = false;
+        //cмерть
+        Destroy(gameObject, 0.5f);
     }
 }
