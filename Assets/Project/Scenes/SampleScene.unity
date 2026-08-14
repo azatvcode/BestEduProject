@@ -5957,6 +5957,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponPickupController
   _inventory: {fileID: 2107334656}
   _pickupPoint: {fileID: 1956235947}
+  _animator: {fileID: 2107334660}
 --- !u!114 &2107334654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6107,6 +6108,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &2107334660 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 2faa610713d3b3c439473daa55e8c60a, type: 3}
+  m_PrefabInstance: {fileID: 2107334639}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3758678071014199357
 PrefabInstance:
   m_ObjectHideFlags: 0

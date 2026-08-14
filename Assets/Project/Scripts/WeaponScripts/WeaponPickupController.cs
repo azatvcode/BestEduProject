@@ -5,6 +5,7 @@ public class WeaponPickupController : MonoBehaviour
 {
     [SerializeField] private WeaponInventory _inventory;
     [SerializeField] private Transform _pickupPoint;
+    [SerializeField] private Animator _animator;
 
     private WeaponPickup _nearbyPickup;
 
@@ -40,6 +41,7 @@ public class WeaponPickupController : MonoBehaviour
             return;
 
         PickupWeapon(_nearbyPickup);
+        _animator.SetLayerWeight(1, 1f);
     }
 
    private void PickupWeapon(WeaponPickup pickup)
